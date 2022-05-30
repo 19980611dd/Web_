@@ -45,23 +45,22 @@ $(function() {
                 }
 
             })
-
-            $("#form_login").submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "/api/login",
-                    data: $("#form_login").serialize(),
-                    success: (res) => {
-                        if (res.status !== 0) return layer.msg(res.message);
-                        layer.msg("登录成功！");
-                        // 将登录成功得到的 token 字符串，保存到 localStorage 中
-                        localStorage.setItem("token", res.token);
-                        // 跳转到主页
-                        location.href = "/index.html";
-                    },
-                });
-            });
         })
         // 登录功能 
+    $("#form_login").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/api/login",
+            data: $("#form_login").serialize(),
+            success: (res) => {
+                if (res.status !== 0) return layer.msg(res.message);
+                layer.msg("登录成功！");
+                // 将登录成功得到的 token 字符串，保存到 localStorage 中
+                localStorage.setItem("token", res.token);
+                // 跳转到主页
+                location.href = "/index.html";
+            },
+        });
+    });
 });
